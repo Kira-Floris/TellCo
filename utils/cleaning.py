@@ -5,6 +5,22 @@ class CleanData:
 		self.df = df
 		print('Automation in Action...!!!')
 
+	def fill_with_ffill(df, fill_columns)->pd.DataFrame:
+		# fill null values with forward fill
+		for column in fill_columns:
+			self.df[column] = self.df[column].fillna(method='ffill')
+		
+		return self.df
+
+	def fill_with_bfill(df, fill_columns)->pd.DataFrame:
+		# fill null values with backward fill
+		for column in fill_columns:
+			self.df[column] = self.df[column].fillna(method='bfill')
+		
+		return self.df
+
+
+
 	def fill_with_mean(self, fill_columns)->pd.DataFrame:
 		# fill null values with mean
 		for column in fill_columns:
