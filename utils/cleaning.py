@@ -16,10 +16,7 @@ class CleanData:
 		# fill null values with backward fill
 		for column in fill_columns:
 			self.df[column] = self.df[column].fillna(method='bfill')
-		
 		return self.df
-
-
 
 	def fill_with_mean(self, fill_columns)->pd.DataFrame:
 		# fill null values with mean
@@ -33,6 +30,13 @@ class CleanData:
 		for column in fill_columns:
 			column_mode = self.df[column].mode()[0]
 			self.df[column].fillna(value=column_mode, inplace=True)
+		return self.df
+
+	def fill_with_median(self, fill_columns)->pd.DataFrame:
+		# fill null values with mode
+		for column in fill_columns:
+			column_median = self.df[column].median().round(1)
+			self.df[column].fillna(value=column_median, inplace=True)
 		return self.df
 
 	def drop_rows(self, drop_in_columns=[])->pd.DataFrame:
