@@ -19,7 +19,7 @@ class CleanData:
 			self.df[column].fillna(value=column_mode, inplace=True)
 		return self.df
 
-	def drop_rows(self, drop_in_columns=[])->pd:DataFrame:
+	def drop_rows(self, drop_in_columns=[])->pd.DataFrame:
 		# drop rows for certain columns or all of them
 		if drop_in_columns:
 			self.df.dropna(subset=drop_in_columns, inplace=True)
