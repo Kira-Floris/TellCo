@@ -41,7 +41,7 @@ class CleanData:
 	def fill_with_median(self, fill_columns)->pd.DataFrame:
 		# fill null values with mode
 		for column in fill_columns:
-			column_median = self.df[column].median().round(1)
+			column_median = round(self.df[column].median(),1)
 			self.df[column].fillna(value=column_median, inplace=True)
 		return self.df
 
