@@ -69,4 +69,17 @@ class CleanData:
 			self.df[column] = pd.to_datetime(self.df[column], format='%Y%m%d : %H%M%S')
 		return self.df
 
+	def treat_outliers_with_mode(self, fill_columns)->pd.DataFrame:
+		# loop through columns
+		# find min_threshol and max of column
+		# replace max by mode, min by min
+		for column in fill_columns:
+			min_threshold, max_threshold = self.df.quantile([0.001,0.999])
+			column_mode = self.df[column].mode()[0]
+			column_min = self.df[column].min()
+			# replacing ouliers
+			self.df[column>max_threshold,column] = column_mode
+			self.df[column<min_threshold,column] = column_min
+		return self.df
+
 
