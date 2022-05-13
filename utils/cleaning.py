@@ -74,12 +74,13 @@ class CleanData:
 		# find min_threshol and max of column
 		# replace max by mode, min by min
 		for column in fill_columns:
-			min_threshold, max_threshold = self.df.quantile([0.001,0.999])
+			min_threshold, max_threshold = self.df[column].quantile([0.001,0.999])
+			print(type(max_threshold))
 			column_mode = self.df[column].mode()[0]
 			column_min = self.df[column].min()
 			# replacing ouliers
-			self.df[column>max_threshold,column] = column_mode
-			self.df[column<min_threshold,column] = column_min
+			self.df.loc[(self.df[column]>max_threshold),column] = column_mode
+			self.df.loc[(self.df[column]<min_threshold),column] = column_min
 		return self.df
 
 
