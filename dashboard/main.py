@@ -8,6 +8,10 @@ import matplotlib.pyplot as plt
 
 from plot_relations import plot_relations
 
+import sys
+sys.path.append('..')
+from sql.query import fetchall
+
 # imports datasets
 clean_data = pd.read_csv('../data/clean_data.csv')
 user_data = pd.read_csv('../data/all_user_data.csv')
@@ -42,7 +46,7 @@ def analysis_function():
 			plot_list
 		)
 	
-	sample_size = st.slider('Sample Size', 10, int(len(clean_data)))
+	sample_size = st.slider('Sample Size', 1000, int(len(clean_data)))
 	for figure in view_plots:
 		main = figure
 		plot = plot_relations(clean_data[['Dur. (ms).1','Dur. (ms)','Total DL (Bytes)','Total UL (Bytes)',main]][:sample_size], main)
@@ -73,6 +77,8 @@ def analysis_function():
 	sample_size = st.slider('Sample Size', 10, int(len(experience_data)))
 	st.dataframe(experience_data.sort_values('Satisfaction Score',axis=0, ascending=False, inplace=False)[:sample_size])
 	# screenshot of db fetch
+
+
 
 # model prediction testing
 def ai_function():

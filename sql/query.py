@@ -56,9 +56,9 @@ def fetchall():
 
 if __name__ == '__main__':
 	file = '../data/experience_data.csv'
-	obj = SavingToSQL(file)
-	obj.create_table()
-	obj.csv_to_sql()
-	obj.sql_fetchall()
+	# obj = SavingToSQL(file)
+	# obj.create_table()
+	# obj.csv_to_sql()
+	# obj.sql_fetchall()
 	fetchall()
-	obj.sql_close()
+	# obj.sql_close()
